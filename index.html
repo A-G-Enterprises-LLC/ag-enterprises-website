@@ -74,6 +74,10 @@
       background-color: #d4af37;
       color: #000;
     }
+    #countdown {
+      font-size: 1.5rem;
+      margin-top: 1rem;
+    }
 
     footer {
       background-color: #000;
@@ -105,12 +109,35 @@
     <section class="subsidiary clip-clue">
       <h2>AG Clip Clue</h2>
       <p>Exploring intelligent media matching, scene recognition, and video classification. A quiet revolution in content technology.</p>
-      
+      <div id="countdown">Loading countdown...</div>
     </section>
   </main>
-  <a href="clip-clue-countdown.html">Countdown Page</a>
+
   <footer>
     <p>&copy; 2025 A & G Enterprises LLC — All Rights Reserved</p>
   </footer>
+
+  <script>
+    const launchDate = new Date("2025-08-01T00:00:00").getTime();
+    const countdown = document.getElementById("countdown");
+
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = launchDate - now;
+
+      if (distance < 0) {
+        clearInterval(interval);
+        countdown.innerHTML = "🎉 We are live!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = `Launching in ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }, 1000);
+  </script>
 </body>
 </html>
