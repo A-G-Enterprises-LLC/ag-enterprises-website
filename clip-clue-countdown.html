@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AG Clip Clue – Launch Countdown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      background: #000;
+      color: #d4af37;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    #countdown {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+    a {
+      color: #d4af37;
+      text-decoration: none;
+      border: 1px solid #d4af37;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+    }
+    a:hover {
+      background: #d4af37;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <h1>AG Clip Clue</h1>
+  <p>We're decoding the future of media. Launching soon...</p>
+  <div id="countdown">Loading...</div>
+  <a href="index.html">← Back to A&G</a>
+
+  <script>
+    const launchDate = new Date("2025-08-01T00:00:00").getTime();
+    const countdown = document.getElementById("countdown");
+
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = launchDate - now;
+
+      if (distance < 0) {
+        clearInterval(interval);
+        countdown.innerHTML = "We are live!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }, 1000);
+  </script>
+</body>
+</html>
